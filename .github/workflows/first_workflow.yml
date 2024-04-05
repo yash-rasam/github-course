@@ -1,11 +1,20 @@
 name: first workflow
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  pull_request:
+      
 jobs: 
   first_job:
     runs-on: ubuntu-latest
     steps:
-      - name: print hello
-        run: echo "hello world"
-      - name: print bye
-        run: echo "bye world" 
+      - name: current GitHub Actions workflow repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: track changed files
+        run: |
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
+          cat changed_files.txt
+
       
