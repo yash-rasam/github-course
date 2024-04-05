@@ -14,6 +14,7 @@ jobs:
           fetch-depth: 0
 
       - name: track changed files
+        shell: bash
         run: |
           git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
           cat changed_files.txt
