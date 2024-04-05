@@ -17,7 +17,7 @@ jobs:
         shell: bash
         run: |
           mkdir Code_Guru
-          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | xargs -I {} sh -c 'mv {} "Code_Guru/$(echo {} | sed -e 's/\//-/g' )"'
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -v -e "tests/.*" | xargs -I {} sh -c 'cp {} "Code_Guru/$(echo {} | tr '/' '-' )"'
           ls Code_Guru/
           
 
