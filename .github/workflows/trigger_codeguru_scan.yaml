@@ -19,7 +19,7 @@ jobs:
           mkdir Code_Guru
           CG=$(git diff --diff-filter=dr --name-only -r HEAD^1 HEAD) 
           exclude=""
-          for file in ${{var.EXCLUDE_CODEGURU_SCAN}}; do exclude="${exclude} -e ${file}" done
+          for file in ${{vars.EXCLUDE_CODEGURU_SCAN}}; do exclude="${exclude} -e ${file}" done
           echo ${exclude}
           echo "$CG" | grep -v -e "tests/.*" $exclude | xargs -I {} sh -c 'cp {} "Code_Guru/$(echo {} | tr '/' '-' )"' 
 
