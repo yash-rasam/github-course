@@ -16,7 +16,8 @@ jobs:
       - name: track changed files
         shell: bash
         run: |
-          git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
-          cat changed_files.txt
+          mkdir Code_Guru
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt | xargs -I {} mv {} Code_Guru/
+          
 
       
