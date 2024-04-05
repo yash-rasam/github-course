@@ -19,7 +19,7 @@ jobs:
           mkdir Code_Guru
           CG=$(git diff --diff-filter=dr --name-only -r HEAD^1 HEAD) 
           exclude=""
-          if ${{vars.EXCLUDE_CODEGURU_SCAN}}
+          if [[ -n "${{ vars.EXCLUDE_CODEGURU_SCAN }}" ]]; then
             for file in ${{vars.EXCLUDE_CODEGURU_SCAN}};
               do exclude="${exclude} -e ${file}"
             done
