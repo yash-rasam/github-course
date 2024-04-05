@@ -1,8 +1,8 @@
-name: first workflow
+name: CodeGuru Scan
+
 on:
-  workflow_dispatch:
   pull_request:
-  push:
+    branches: [main]
       
 jobs: 
   first_job:
@@ -17,12 +17,12 @@ jobs:
         shell: bash
         run: |
           mkdir Code_Guru
-          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -v -e "tests/.*" | xargs -I {} sh -c 'cp {} "Code_Guru/$(echo {} | tr '/' '-' )"'
-          find Code_Guru/ -type f -exec cat -n {} \; 
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -v -e "tests/.*" | xargs -I {} sh -c 'cp {} "Code_Guru/$(echo {} | tr '/' '-' )"' 
 
       - name: codeguru scan 
         run: |
-          find Code_Guru/ -type f -exec sh -c 'echo "File: $1"; cat -n $1' _ {} \;
+          echo "Files scanned by codeguru : "
+          ls Code_Guru/
           
 
       
