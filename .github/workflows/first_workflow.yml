@@ -19,6 +19,10 @@ jobs:
           mkdir Code_Guru
           git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -v -e "tests/.*" | xargs -I {} sh -c 'cp {} "Code_Guru/$(echo {} | tr '/' '-' )"'
           find Code_Guru/ -type f -exec cat -n {} \; 
+
+      - name: codeguru scan 
+        run: |
+          find Code_Guru/ -type f -exec sh -c 'echo "File: $1"; cat -n $1' _ {} \;
           
 
       
