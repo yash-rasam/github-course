@@ -17,7 +17,7 @@ jobs:
         shell: bash
         run: |
           mkdir Code_Guru
-          git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt | xargs -I {} mv {} Code_Guru/
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | xargs -I {} mv {} Code_Guru/
           ls Code_Guru/
           
 
