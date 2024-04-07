@@ -18,11 +18,10 @@ jobs:
         shell: bash
         run: |
           mkdir Code_Guru
-          CG=$(git diff --diff-filter=dr --name-only -r HEAD^1 HEAD) 
           for file in ${{vars.EXCLUDE_CODEGURU_SCAN}};
             do exclude="${exclude} -e ${file}"
           done
-          echo "$CG" | grep -v $exclude | xargs -I {} sh -c 'cp {} "Code_Guru/$(echo {} | tr '/' '-' )"' 
+          git diff --diff-filter=dr --name-only -r HEAD^1 HEAD | grep -v $exclude | xargs -I {} sh -c 'cp {} "Code_Guru/$(echo {} | tr '/' '-' )"' 
           echo -e "Files scanned by codeguru :\n$(ls Code_Guru/) "
           
           
