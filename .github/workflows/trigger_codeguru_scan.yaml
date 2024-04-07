@@ -22,7 +22,7 @@ jobs:
             do exclude="${exclude} -e ${file}"
           done
           git diff --diff-filter=dr --name-only -r HEAD^1 HEAD | xargs -I {} sh -c 'cp {} "Code_Guru/$(echo {} | sed -e "s/^\.//" | tr '/' '-' )"' 
-          echo -e "Files scanned by codeguru :\n$(ls -a Code_Guru/) "
+          echo -e "Files scanned by codeguru :\n$(ls Code_Guru/) "
 
           
           
