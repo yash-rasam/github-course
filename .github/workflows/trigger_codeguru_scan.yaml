@@ -7,13 +7,14 @@ on:
 jobs: 
   first_job:
     runs-on: ubuntu-latest
+    environment: dev
     steps:
       - name: current GitHub Actions workflow repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: track changed files
+      - name: track changed files 
         shell: bash
         run: |
           mkdir Code_Guru
