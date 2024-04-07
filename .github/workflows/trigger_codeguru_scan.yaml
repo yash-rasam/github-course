@@ -21,7 +21,7 @@ jobs:
           for file in ${{vars.EXCLUDE_CODEGURU_SCAN}};
             do exclude="${exclude} -e ${file}"
           done
-          echo "$CG" | if [[ ${{ vars.EXCLUDE_CODEGURU_SCAN }} ]] then grep -v $exclude; fi | xargs -I {} sh -c 'cp {} "Code_Guru/$(echo {} | tr '/' '-' )"' 
+          echo "$CG" | grep -v $exclude; fi | xargs -I {} sh -c 'cp {} "Code_Guru/$(echo {} | tr '/' '-' )"' 
 
       - name: codeguru scan 
         run: |
