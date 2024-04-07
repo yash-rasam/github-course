@@ -22,11 +22,7 @@ jobs:
             do exclude="${exclude} -e ${file}"
           done
           echo "$CG" | grep -v $exclude | xargs -I {} sh -c 'cp {} "Code_Guru/$(echo {} | tr '/' '-' )"' 
-
-      - name: codeguru scan 
-        run: |
           echo -e "Files scanned by codeguru :\n$(ls Code_Guru/) "
-          echo -e "Files excluded by codeguru : ${{vars.EXCLUDE_CODEGURU_SCAN}}"
           
           
 
